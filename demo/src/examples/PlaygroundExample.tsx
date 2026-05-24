@@ -111,6 +111,7 @@ const DEFAULTS = {
   paused: false,
   defaultSide: 'front' as 'front' | 'back',
   trackWindow: false,
+  scroll: false,
   showSliceOverlay: false,
 }
 
@@ -127,6 +128,7 @@ export function PlaygroundExample() {
   const [paused, setPaused] = useState(DEFAULTS.paused)
   const [defaultSide, setDefaultSide] = useState<'front' | 'back'>(DEFAULTS.defaultSide)
   const [trackWindow, setTrackWindow] = useState(DEFAULTS.trackWindow)
+  const [scrollMode, setScrollMode] = useState(DEFAULTS.scroll)
   const [showSliceOverlay, setShowSliceOverlay] = useState(DEFAULTS.showSliceOverlay)
 
   const slicesId = useId()
@@ -158,12 +160,13 @@ export function PlaygroundExample() {
     if (tilt > 0) lines.push(`  tilt={${tilt}}`)
     if (paused) lines.push(`  paused`)
     if (defaultSide === 'back') lines.push(`  defaultSide="back"`)
-    if (trackWindow) lines.push(`  trackWindow`)
+    if (scrollMode) lines.push(`  scroll`)
+    else if (trackWindow) lines.push(`  trackWindow`)
     lines.push(`  front={<${meta.label.replace(' ', '')}Face variant="a" />}`)
     lines.push(`  back={<${meta.label.replace(' ', '')}Face variant="b" />}`)
     lines.push(`/>`)
     return lines.join('\n')
-  }, [slices, ease, hitMargin, tilt, paused, defaultSide, trackWindow, meta])
+  }, [slices, ease, hitMargin, tilt, paused, defaultSide, trackWindow, scrollMode, meta])
 
   const resetAll = () => {
     setContent(DEFAULTS.content)
@@ -176,6 +179,7 @@ export function PlaygroundExample() {
     setPaused(DEFAULTS.paused)
     setDefaultSide(DEFAULTS.defaultSide)
     setTrackWindow(DEFAULTS.trackWindow)
+    setScrollMode(DEFAULTS.scroll)
     setShowSliceOverlay(DEFAULTS.showSliceOverlay)
   }
 
@@ -197,14 +201,15 @@ export function PlaygroundExample() {
       <div className="pg2-preview" style={{ minHeight: height + 80 }}>
         <div className="pg2-stage-wrap">
           <Lenticular
-            key={`${trackWindow}-${defaultSide}-${content}`}
+            key={`${trackWindow}-${defaultSide}-${content}-${scrollMode}`}
             slices={slices}
             ease={ease}
             hitMargin={hitMargin}
             tilt={tilt}
             paused={paused}
             defaultSide={defaultSide}
-            trackWindow={trackWindow}
+            trackWindow={!scrollMode && trackWindow}
+            scroll={scrollMode}
             onOffsetChange={handleOffset}
             front={<Stage width={width} height={height}>{meta.render('a')}</Stage>}
             back={<Stage width={width} height={height}>{meta.render('b')}</Stage>}
@@ -300,11 +305,23 @@ export function PlaygroundExample() {
         <div className="pg2-group">
           <span className="control-label">Track</span>
           <div className="control-options">
-            <button className="tab-btn" data-active={!trackWindow} onClick={() => setTrackWindow(false)}>
+            <button className="tab-btn" data-active={!trackWindow} onClick={() => setTrackWindow(false)} disabled={scrollMode}>
               Element
             </button>
-            <button className="tab-btn" data-active={trackWindow} onClick={() => setTrackWindow(true)}>
+            <button className="tab-btn" data-active={trackWindow} onClick={() => setTrackWindow(true)} disabled={scrollMode}>
               Window
+            </button>
+          </div>
+        </div>
+
+        <div className="pg2-group">
+          <span className="control-label">Driver</span>
+          <div className="control-options">
+            <button className="tab-btn" data-active={!scrollMode} onClick={() => setScrollMode(false)}>
+              Cursor
+            </button>
+            <button className="tab-btn" data-active={scrollMode} onClick={() => setScrollMode(true)}>
+              Scroll
             </button>
           </div>
         </div>

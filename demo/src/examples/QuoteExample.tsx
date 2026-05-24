@@ -15,6 +15,7 @@ export function QuoteExample({ slices = 16 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.15}
+      hitMargin={80}
       front={
         <Stage width={300} height={150}>
           <QuoteBlock text="It was completely still." variant="a" />

@@ -31,6 +31,7 @@ export function PortraitExample({ slices = 18 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.1}
+      hitMargin={80}
       front={<Stage width={200} height={260}><Portrait variant="a" /></Stage>}
       back={<Stage width={200} height={260}><Portrait variant="b" /></Stage>}
     />

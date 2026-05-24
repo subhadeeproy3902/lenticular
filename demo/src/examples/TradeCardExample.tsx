@@ -40,6 +40,7 @@ export function TradeCardExample({ slices = 10 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.16}
+      hitMargin={80}
       front={<Stage width={180} height={240}><TradeCard variant="a" /></Stage>}
       back={<Stage width={180} height={240}><TradeCard variant="b" /></Stage>}
     />

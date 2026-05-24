@@ -47,6 +47,16 @@ export interface LenticularProps
   hitMargin?: number
 
   /**
+   * Drive the offset from the element's scroll progress through the
+   * viewport instead of the cursor. As the wrapper scrolls from the
+   * bottom of the viewport up through the top, the offset travels from
+   * `0` → `1`. Mouse / touch / gyroscope listeners are disabled while
+   * this is on. Useful for "reveal as you scroll" hero sections.
+   * @default false
+   */
+  scroll?: boolean
+
+  /**
    * Use device orientation (gyroscope) instead of mouse on supported
    * devices. Falls back to mouse if `DeviceOrientationEvent` is missing.
    * @default false

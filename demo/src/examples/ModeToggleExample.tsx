@@ -33,6 +33,7 @@ export function ModeToggleExample({ slices = 12 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.14}
+      hitMargin={80}
       front={<Stage width={260} height={180}><ModeCard variant="a" /></Stage>}
       back={<Stage width={260} height={180}><ModeCard variant="b" /></Stage>}
     />

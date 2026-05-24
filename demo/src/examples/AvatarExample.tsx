@@ -25,6 +25,7 @@ export function AvatarExample({ slices = 20 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.08}
+      hitMargin={120}
       front={<AvatarFront />}
       back={<AvatarBack />}
     />

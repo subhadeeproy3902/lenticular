@@ -17,6 +17,7 @@ export function NumberCardExample({ slices = 12 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.14}
+      hitMargin={80}
       front={<Stage width={180} height={200}><NumberCard variant="a" /></Stage>}
       back={<Stage width={180} height={200}><NumberCard variant="b" /></Stage>}
     />

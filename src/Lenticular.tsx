@@ -67,6 +67,7 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
       ease = 0.12,
       trackWindow = false,
       hitMargin = 24,
+      scroll = false,
       gyroscope = false,
       paused = false,
       defaultSide = 'front',
@@ -109,6 +110,7 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
     const gyroscopeRef = useRef(gyroscope)
     const slicesRef = useRef(safeSlices)
     const hitMarginRef = useRef(hitMargin)
+    const scrollRef = useRef(scroll)
     const tiltRef = useRef(tilt)
     const perspectiveRef = useRef(perspective)
     const onOffsetChangeRef = useRef(onOffsetChange)
@@ -135,6 +137,10 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
     useEffect(() => {
       hitMarginRef.current = Math.max(0, hitMargin)
     }, [hitMargin])
+
+    useEffect(() => {
+      scrollRef.current = scroll
+    }, [scroll])
 
     useEffect(() => {
       onOffsetChangeRef.current = onOffsetChange
@@ -310,7 +316,36 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
     }, [requestTick, updateClipPaths])
 
     useEffect(() => {
+      if (!scroll) return
+      const wrapper = wrapperRef.current
+      if (!wrapper) return
+
+      // Map element position through the viewport to offset 0 → 1.
+      // When the element's top is at the viewport bottom: offset = 0.
+      // When the element's bottom is at the viewport top:    offset = 1.
+      const compute = () => {
+        const rect = wrapper.getBoundingClientRect()
+        const vh = window.innerHeight || 0
+        if (vh <= 0) return
+        const total = vh + rect.height
+        const traveled = vh - rect.top
+        const nx = clamp(traveled / total, 0, 1)
+        targetOffsetRef.current = nx
+        requestTick()
+      }
+
+      compute()
+      window.addEventListener('scroll', compute, { passive: true })
+      window.addEventListener('resize', compute, { passive: true })
+      return () => {
+        window.removeEventListener('scroll', compute)
+        window.removeEventListener('resize', compute)
+      }
+    }, [scroll, requestTick])
+
+    useEffect(() => {
       if (gyroscope) return
+      if (scroll) return
       const wrapper = wrapperRef.current
       if (!wrapper) return
 
@@ -394,7 +429,7 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
         wrapper.removeEventListener('touchend', onTouchEnd)
         wrapper.removeEventListener('touchcancel', onTouchEnd)
       }
-    }, [trackWindow, gyroscope, handlePointerMove, handlePointerLeave])
+    }, [trackWindow, gyroscope, scroll, handlePointerMove, handlePointerLeave])
 
     useEffect(() => {
       if (!gyroscope || typeof window === 'undefined') return

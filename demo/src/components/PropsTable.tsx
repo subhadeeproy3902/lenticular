@@ -53,7 +53,14 @@ const rows: Row[] = [
     type: 'number',
     default: '24',
     description:
-      'Extra hit-area in pixels added on every side of the wrapper. Lets you overshoot the visible edge and still hold the back fully revealed. Set to 0 to disable.',
+      'Extra hit-area in pixels added on every side of the wrapper. Lets you overshoot the visible edge and still hold the back fully revealed. Bump higher (80–120) to make the surrounding card act as the hit target. Set to 0 to disable.',
+  },
+  {
+    name: 'scroll',
+    type: 'boolean',
+    default: 'false',
+    description:
+      "Drive the offset from the element's scroll progress through the viewport instead of the cursor. As the wrapper scrolls from the bottom of the viewport up through the top, the offset travels 0 → 1. Mouse / touch listeners are disabled while on.",
   },
   {
     name: 'tilt',

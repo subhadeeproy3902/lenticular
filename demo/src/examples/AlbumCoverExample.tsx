@@ -23,6 +23,7 @@ export function AlbumCoverExample({ slices = 12 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.16}
+      hitMargin={80}
       front={<Stage width={220} height={240}><AlbumCover variant="a" /></Stage>}
       back={<Stage width={220} height={240}><AlbumCover variant="b" /></Stage>}
     />

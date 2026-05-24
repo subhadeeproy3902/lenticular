@@ -13,6 +13,7 @@ export function ButtonExample({ slices = 6 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.18}
+      hitMargin={120}
       front={<ButtonFront />}
       back={<ButtonBack />}
     />
