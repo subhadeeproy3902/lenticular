@@ -23,8 +23,8 @@ export function TickerExample({ slices = 20 }: { slices?: number }) {
     <div className="example-row-ticker">
       <Lenticular
         slices={slices}
-        ease={0.2}
-        triggerParent
+        ease={0.18}
+        scroll
         front={<Stage width={780} height={56}><Ticker variant="a" /></Stage>}
         back={<Stage width={780} height={56}><Ticker variant="b" /></Stage>}
       />

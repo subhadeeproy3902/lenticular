@@ -326,16 +326,20 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
       const wrapper = wrapperRef.current
       if (!wrapper) return
 
-      // Map element position through the viewport to offset 0 → 1.
-      // When the element's top is at the viewport bottom: offset = 0.
-      // When the element's bottom is at the viewport top:    offset = 1.
+      // Map element position to offset 0 → 1 using only the middle 70% of the
+      // viewport, so the effect completes well before the element leaves the
+      // screen (rather than spanning a full element-pass-through). Anchor on
+      // the element's vertical center.
+      //   center at vh * 0.85 → offset = 0  (just entered the bottom)
+      //   center at vh * 0.15 → offset = 1  (about to leave the top)
       const compute = () => {
         const rect = wrapper.getBoundingClientRect()
         const vh = window.innerHeight || 0
         if (vh <= 0) return
-        const total = vh + rect.height
-        const traveled = vh - rect.top
-        const nx = clamp(traveled / total, 0, 1)
+        const center = rect.top + rect.height / 2
+        const start = vh * 0.85
+        const end = vh * 0.15
+        const nx = clamp((start - center) / (start - end), 0, 1)
         targetOffsetRef.current = nx
         requestTick()
       }
