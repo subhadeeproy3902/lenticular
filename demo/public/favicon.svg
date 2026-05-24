@@ -1,20 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <defs>
+    <!-- Match HeaderLogo gradients exactly -->
     <linearGradient id="a" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ff8a5b"/>
-      <stop offset="1" stop-color="#ff3d7f"/>
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#c9c6c7"/>
     </linearGradient>
     <linearGradient id="b" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#7afcff"/>
-      <stop offset="1" stop-color="#3d7fff"/>
+      <stop offset="0" stop-color="#484848"/>
+      <stop offset="1" stop-color="#212121"/>
     </linearGradient>
   </defs>
-  <rect width="64" height="64" rx="14" fill="#0a0a0c"/>
+  <rect width="64" height="64" rx="12" fill="#070707"/>
+  <!--
+    Mini-stripes. 7 visible bars at 4 px wide, 7 px apart (centers at 11, 18, …),
+    no rounded corners — same square-edge feel as the new HeaderLogo.
+  -->
   <g>
-    <rect x="10" y="12" width="6" height="40" rx="3" fill="url(#a)"/>
-    <rect x="20" y="12" width="6" height="40" rx="3" fill="url(#b)"/>
-    <rect x="30" y="12" width="6" height="40" rx="3" fill="url(#a)"/>
-    <rect x="40" y="12" width="6" height="40" rx="3" fill="url(#b)"/>
-    <rect x="50" y="12" width="4" height="40" rx="2" fill="url(#a)"/>
+    <rect x="11" y="12" width="4" height="40" fill="url(#a)"/>
+    <rect x="18" y="12" width="4" height="40" fill="url(#b)"/>
+    <rect x="25" y="12" width="4" height="40" fill="url(#a)"/>
+    <rect x="32" y="12" width="4" height="40" fill="url(#b)"/>
+    <rect x="39" y="12" width="4" height="40" fill="url(#a)"/>
+    <rect x="46" y="12" width="4" height="40" fill="url(#b)"/>
+    <rect x="53" y="12" width="4" height="40" fill="url(#a)"/>
   </g>
 </svg>

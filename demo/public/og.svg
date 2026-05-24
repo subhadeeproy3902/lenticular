@@ -1,68 +1,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0a0a0c"/>
-      <stop offset="1" stop-color="#070707"/>
+    <!-- Match HeaderLogo gradients exactly -->
+    <linearGradient id="strpA" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#c9c6c7"/>
     </linearGradient>
-    <linearGradient id="warm" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ff8a5b"/>
-      <stop offset="1" stop-color="#ff3d7f"/>
+    <linearGradient id="strpB" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#484848"/>
+      <stop offset="1" stop-color="#212121"/>
     </linearGradient>
-    <linearGradient id="cool" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#7afcff"/>
-      <stop offset="1" stop-color="#3d7fff"/>
-    </linearGradient>
-    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
-      <stop offset="0" stop-color="#ff3d7f" stop-opacity="0.16"/>
-      <stop offset="0.5" stop-color="#3d7fff" stop-opacity="0.10"/>
-      <stop offset="1" stop-color="#070707" stop-opacity="0"/>
-    </radialGradient>
   </defs>
-  <rect width="1200" height="630" fill="url(#bg)"/>
-  <rect width="1200" height="630" fill="url(#glow)"/>
-  <!-- Lenticular stripes (logo) -->
-  <g transform="translate(140, 130)">
-    <g>
-      <rect x="0"   y="0" width="32" height="370" rx="16" fill="url(#warm)"/>
-      <rect x="44"  y="0" width="32" height="370" rx="16" fill="url(#cool)"/>
-      <rect x="88"  y="0" width="32" height="370" rx="16" fill="url(#warm)"/>
-      <rect x="132" y="0" width="32" height="370" rx="16" fill="url(#cool)"/>
-      <rect x="176" y="0" width="32" height="370" rx="16" fill="url(#warm)"/>
-      <rect x="220" y="0" width="32" height="370" rx="16" fill="url(#cool)"/>
-      <rect x="264" y="0" width="32" height="370" rx="16" fill="url(#warm)"/>
-    </g>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#070707"/>
+
+  <!--
+    HeaderLogo at scale: 10 stripes, width 5, gap 15 (every 20), height 104,
+    no rounded corners. Scale × 4 for the OG card, anchored top-left at (140, 130).
+    Result: stripe width 20, gap 60, height 416, total width 4 + 9*80 + 20 = 744.
+    Reposition so it sits left of the title block.
+  -->
+  <g transform="translate(140, 110) scale(4)">
+    <rect x="4"   y="0" width="5" height="104" fill="url(#strpA)"/>
+    <rect x="24"  y="0" width="5" height="104" fill="url(#strpB)"/>
+    <rect x="44"  y="0" width="5" height="104" fill="url(#strpA)"/>
+    <rect x="64"  y="0" width="5" height="104" fill="url(#strpB)"/>
+    <rect x="84"  y="0" width="5" height="104" fill="url(#strpA)"/>
+    <rect x="104" y="0" width="5" height="104" fill="url(#strpB)"/>
+    <rect x="124" y="0" width="5" height="104" fill="url(#strpA)"/>
+    <rect x="144" y="0" width="5" height="104" fill="url(#strpB)"/>
+    <rect x="164" y="0" width="5" height="104" fill="url(#strpA)"/>
+    <rect x="184" y="0" width="5" height="104" fill="url(#strpB)"/>
   </g>
-  <!-- Title -->
-  <g transform="translate(540, 220)">
+
+  <!-- Title block, right of the stripes -->
+  <g transform="translate(940, 220)">
     <text x="0" y="0"
-          font-family="Inter, system-ui, sans-serif"
+          font-family="Geist, Inter, system-ui, sans-serif"
           font-size="92" font-weight="700"
-          fill="#fbfbfb" letter-spacing="-2">
+          fill="#fbfbfb" letter-spacing="-2"
+          text-anchor="end">
       Lenticular fx
     </text>
     <text x="0" y="62"
-          font-family="JetBrains Mono, monospace"
+          font-family="Geist Mono, ui-monospace, monospace"
           font-size="22" font-weight="500"
-          fill="#9b9b9e" letter-spacing="2">
+          fill="#9b9b9e" letter-spacing="2"
+          text-anchor="end">
       bun add lenticular-fx
     </text>
     <text x="0" y="160"
-          font-family="Instrument Serif, serif"
-          font-style="italic" font-size="44"
-          fill="#cacaca">
+          font-family="Geist, Inter, system-ui, sans-serif"
+          font-size="44" font-weight="400"
+          fill="#cacaca"
+          text-anchor="end">
       Slide your cursor —
     </text>
     <text x="0" y="208"
-          font-family="Instrument Serif, serif"
-          font-style="italic" font-size="44"
-          fill="url(#warm)">
+          font-family="Geist, Inter, system-ui, sans-serif"
+          font-size="44" font-weight="600"
+          fill="#fbfbfb"
+          text-anchor="end">
       the content restripes.
     </text>
   </g>
+
   <!-- Footer tag -->
-  <g transform="translate(140, 560)">
+  <g transform="translate(140, 580)">
     <text x="0" y="0"
-          font-family="JetBrains Mono, monospace"
+          font-family="Geist Mono, ui-monospace, monospace"
           font-size="18" font-weight="500"
           fill="#5a5a5e" letter-spacing="3">
       REACT · CSS CLIP-PATH · ZERO DEPS
