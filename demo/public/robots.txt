@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# AI search engines (AEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://lenticular-fx.vercel.app/sitemap.xml

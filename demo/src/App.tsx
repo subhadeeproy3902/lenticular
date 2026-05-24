@@ -1,5 +1,6 @@
 import { useId, useState } from 'react'
 import { CodeBlock } from './components/CodeBlock'
+import { Faq } from './components/Faq'
 import { HeaderLogo } from './components/HeaderLogo'
 import { GitHubIcon, LinkedInIcon, XIcon } from './components/icons'
 import { PropsTable } from './components/PropsTable'
@@ -226,6 +227,8 @@ export function App() {
         <PropsTable />
 
         <PlaygroundExample />
+
+        <Faq />
 
         <footer className="footer">
           <span className="footer-muted">Crafted by</span>{' '}

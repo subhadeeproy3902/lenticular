@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a0a0c"/>
+      <stop offset="1" stop-color="#070707"/>
+    </linearGradient>
+    <linearGradient id="warm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8a5b"/>
+      <stop offset="1" stop-color="#ff3d7f"/>
+    </linearGradient>
+    <linearGradient id="cool" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7afcff"/>
+      <stop offset="1" stop-color="#3d7fff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="60%">
+      <stop offset="0" stop-color="#ff3d7f" stop-opacity="0.16"/>
+      <stop offset="0.5" stop-color="#3d7fff" stop-opacity="0.10"/>
+      <stop offset="1" stop-color="#070707" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <!-- Lenticular stripes (logo) -->
+  <g transform="translate(140, 130)">
+    <g>
+      <rect x="0"   y="0" width="32" height="370" rx="16" fill="url(#warm)"/>
+      <rect x="44"  y="0" width="32" height="370" rx="16" fill="url(#cool)"/>
+      <rect x="88"  y="0" width="32" height="370" rx="16" fill="url(#warm)"/>
+      <rect x="132" y="0" width="32" height="370" rx="16" fill="url(#cool)"/>
+      <rect x="176" y="0" width="32" height="370" rx="16" fill="url(#warm)"/>
+      <rect x="220" y="0" width="32" height="370" rx="16" fill="url(#cool)"/>
+      <rect x="264" y="0" width="32" height="370" rx="16" fill="url(#warm)"/>
+    </g>
+  </g>
+  <!-- Title -->
+  <g transform="translate(540, 220)">
+    <text x="0" y="0"
+          font-family="Inter, system-ui, sans-serif"
+          font-size="92" font-weight="700"
+          fill="#fbfbfb" letter-spacing="-2">
+      Lenticular fx
+    </text>
+    <text x="0" y="62"
+          font-family="JetBrains Mono, monospace"
+          font-size="22" font-weight="500"
+          fill="#9b9b9e" letter-spacing="2">
+      bun add lenticular-fx
+    </text>
+    <text x="0" y="160"
+          font-family="Instrument Serif, serif"
+          font-style="italic" font-size="44"
+          fill="#cacaca">
+      Slide your cursor —
+    </text>
+    <text x="0" y="208"
+          font-family="Instrument Serif, serif"
+          font-style="italic" font-size="44"
+          fill="url(#warm)">
+      the content restripes.
+    </text>
+  </g>
+  <!-- Footer tag -->
+  <g transform="translate(140, 560)">
+    <text x="0" y="0"
+          font-family="JetBrains Mono, monospace"
+          font-size="18" font-weight="500"
+          fill="#5a5a5e" letter-spacing="3">
+      REACT · CSS CLIP-PATH · ZERO DEPS
+    </text>
+  </g>
+</svg>

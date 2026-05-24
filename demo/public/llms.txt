@@ -1,0 +1,71 @@
+# lenticular-fx
+
+> A React component that recreates the lenticular print effect — sliding the cursor over a wrapper restripes between two stacked `front` and `back` children through interleaved vertical columns, exactly like a physical lenticular sticker, trading card, or postcard. Pure CSS `clip-path` + `requestAnimationFrame`, zero runtime dependencies, ~10 kB packed.
+
+## Install
+
+```bash
+bun add lenticular-fx
+# or
+npm install lenticular-fx
+# or
+pnpm add lenticular-fx
+```
+
+## API
+
+```tsx
+import { Lenticular } from 'lenticular-fx'
+
+<Lenticular
+  front={<Day />}
+  back={<Night />}
+  slices={12}      // 2–40 interleaved columns
+  ease={0.12}      // lerp per frame, 0.01–1
+  tilt={14}        // optional 3D rotateY degrees
+  hitMargin={24}   // extra interactive padding in px
+  defaultSide="front"
+/>
+```
+
+## Props (full)
+
+- `front: ReactNode` — content on the left edge (offset 0). Required.
+- `back: ReactNode` — content on the right edge (offset 1). Required.
+- `slices?: number` — number of interleaved vertical columns. Clamped [2, 40]. Default 10.
+- `ease?: number` — lerp factor per frame. 1 = instant, 0.01 = molasses. Clamped (0, 1]. Default 0.12.
+- `defaultSide?: 'front' | 'back'` — face at rest. Default 'front'.
+- `trackWindow?: boolean` — track cursor across the whole viewport. Default false.
+- `hitMargin?: number` — extra hit-area in px so the cursor can overshoot the visible edge and still hold the back fully revealed. Default 24.
+- `tilt?: number` — optional 3D rotateY in degrees, driven by the same offset. Default 0 (off).
+- `perspective?: number` — CSS perspective in px when `tilt > 0`. Default 900.
+- `gyroscope?: boolean` — use device-orientation gamma instead of mouse on supported devices. Default false.
+- `paused?: boolean` — freeze the animation loop. Default false.
+- `onOffsetChange?: (offset: number) => void` — called each frame with the lerped offset. Use a ref, not setState.
+- `className?: string` — applied to the wrapper div.
+- `style?: CSSProperties` — applied to the wrapper div.
+
+All `HTMLDivElement` attributes are forwarded to the wrapper. The component forwards a ref to the wrapper div.
+
+## How it works
+
+A physical lenticular print is alternating columns of two images placed behind a ribbed lens. We simulate that with two stacked overlay layers above an invisible layout base, each cut to vertical rectangles by `clip-path: path()`. On `mousemove`, the cursor X is normalized to [0, 1] relative to the wrapper. A `requestAnimationFrame` loop lerps a `currentOffset` ref toward that target — React never re-renders inside the animation. Each frame, two clip-path strings are recomputed: the front layer's rectangle spans the left `(1 − offset)` of every slice, the back layer's the remaining right portion. Sub-pixel cutoffs collapse to a single rectangle or hide entirely so there are no anti-aliasing seams at the extremes.
+
+## Browser support
+
+- Chrome / Edge 88+
+- Safari 14.1+
+- Firefox 63+
+
+## Use cases
+
+- Product cards that flip to spec sheets on hover
+- Avatar / portrait day → night reveals
+- CTA buttons that swap copy ("Get started" → "14-day free trial")
+- Trading cards with holographic-feeling interleave
+- Tickers and marquees that morph between two phrases
+- Anything you'd hand-print on lenticular plastic
+
+## License
+
+MIT © Subhadeep Roy — https://github.com/subhadeeproy3902/lenticular

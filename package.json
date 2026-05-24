@@ -45,13 +45,24 @@
   },
   "keywords": [
     "react",
-    "animation",
+    "react-component",
     "lenticular",
+    "lenticular-print",
+    "animation",
     "effect",
     "css",
+    "clip-path",
     "parallax",
     "hover",
-    "reveal"
+    "reveal",
+    "3d-tilt",
+    "perspective",
+    "holographic",
+    "trading-card",
+    "interactive",
+    "motion",
+    "ui",
+    "typescript"
   ],
   "license": "MIT",
   "repository": {

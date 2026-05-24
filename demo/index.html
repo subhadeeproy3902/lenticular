@@ -3,19 +3,163 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lenticular fx — slide-to-swap text effect for React</title>
+    <meta name="theme-color" content="#070707" />
+
+    <!-- ── Primary ─────────────────────────────────────────── -->
+    <title>Lenticular fx — React lenticular print effect for the web</title>
     <meta
       name="description"
-      content="A focused React component that recreates the lenticular print effect on text and UI. Pure CSS clip-path + RAF, zero dependencies."
+      content="Lenticular fx is a focused React component that recreates the lenticular print effect on any content — slide the cursor and the back face restripes through interleaved vertical columns. Pure CSS clip-path, RAF-driven, optional 3D perspective tilt, zero runtime dependencies, ~10 kB packed."
     />
-    <meta name="theme-color" content="#070707" />
+    <link rel="canonical" href="https://lenticular-fx.vercel.app/" />
+    <meta
+      name="keywords"
+      content="react, lenticular, clip-path, mask, animation, react component, npm package, javascript, typescript, hover effect, parallax, holographic, trading card, 3d tilt, perspective, postcard, reveal, interactive ui, motion design"
+    />
+    <meta name="author" content="Subhadeep Roy" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- ── Google site verification (replace content with your own ID) ── -->
+    <meta name="google-site-verification" content="REPLACE_WITH_YOUR_GOOGLE_VERIFICATION_ID" />
+
+    <!-- ── Open Graph ──────────────────────────────────────── -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Lenticular fx" />
+    <meta property="og:title" content="Lenticular fx — React lenticular print effect for the web" />
+    <meta
+      property="og:description"
+      content="Two children, one wrapper, alternating vertical slices on mousemove. Pure CSS clip-path, optional 3D tilt, zero dependencies."
+    />
+    <meta property="og:url" content="https://lenticular-fx.vercel.app/" />
+    <meta property="og:image" content="https://lenticular-fx.vercel.app/og.svg" />
+    <meta property="og:image:type" content="image/svg+xml" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Lenticular fx — animated lenticular print effect for React, with sample stripes" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ── Twitter / X ────────────────────────────────────── -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@mvp_Subha" />
+    <meta name="twitter:creator" content="@mvp_Subha" />
+    <meta name="twitter:title" content="Lenticular fx — React lenticular print effect" />
+    <meta
+      name="twitter:description"
+      content="Slide the cursor, the content restripes into something else. Pure CSS clip-path + RAF, zero deps, optional 3D tilt."
+    />
+    <meta name="twitter:image" content="https://lenticular-fx.vercel.app/og.svg" />
+    <meta name="twitter:image:alt" content="Lenticular fx — animated lenticular print effect for React" />
+
+    <!-- ── Icons / manifest ───────────────────────────────── -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="alternate" type="application/json+oembed" href="/oembed.json" />
+
+    <!-- ── Performance hints ──────────────────────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
     />
+
+    <!-- ── JSON-LD: SoftwareSourceCode (rich result for code packages) ── -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        "name": "lenticular-fx",
+        "alternateName": "Lenticular fx",
+        "description": "A focused React component that recreates the lenticular print effect on any content. Pure CSS clip-path, RAF-driven, optional 3D perspective tilt, zero runtime dependencies.",
+        "url": "https://lenticular-fx.vercel.app/",
+        "codeRepository": "https://github.com/subhadeeproy3902/lenticular",
+        "programmingLanguage": ["TypeScript", "React"],
+        "runtimePlatform": "React 18+",
+        "license": "https://opensource.org/licenses/MIT",
+        "softwareVersion": "1.0.0",
+        "operatingSystem": "Web",
+        "applicationCategory": "DeveloperApplication",
+        "author": {
+          "@type": "Person",
+          "name": "Subhadeep Roy",
+          "url": "https://x.com/mvp_Subha",
+          "sameAs": [
+            "https://github.com/subhadeeproy3902",
+            "https://x.com/mvp_Subha",
+            "https://www.linkedin.com/in/subhadeep3902"
+          ]
+        },
+        "keywords": "react, lenticular, clip-path, animation, hover effect, 3d tilt, npm",
+        "image": "https://lenticular-fx.vercel.app/og.svg"
+      }
+    </script>
+
+    <!-- ── JSON-LD: FAQPage (Answer Engine Optimization) ──── -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is lenticular-fx?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "lenticular-fx is a React component that recreates the lenticular print effect on any content. Wrap two children (front and back) and as the cursor slides across the wrapper, the back face is revealed through interleaved vertical clip-path columns — exactly like a physical lenticular sticker or trading card."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I install lenticular-fx?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Run `bun add lenticular-fx`, `npm install lenticular-fx`, or `pnpm add lenticular-fx`. It declares `react` and `react-dom` as peer dependencies and has no runtime dependencies of its own."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does lenticular-fx work with server-side rendering?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. The component is SSR-safe — there is no `window` access at module level, the styles are injected on the client via a singleton, and the initial render shows the `front` face statically. Mouse listeners and the requestAnimationFrame loop only attach after hydration."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I make the card tilt in 3D as I slide the cursor?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Pass the `tilt` prop in degrees (e.g. `tilt={14}`) and the wrapper will apply `transform: perspective(900px) rotateY(...)` each frame driven by the same offset that powers the slicing. A `perspective` prop lets you tune the depth."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does the back face not fully reveal at the right edge sometimes?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Without `hitMargin` you have to land the cursor exactly on the wrapper's right edge. lenticular-fx defaults `hitMargin` to 24 pixels — extra hit-area on every side — so you can overshoot the visible edge and still pin the offset at 1, keeping the back fully revealed. Bump it higher (40–60) for chunkier cards."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Which browsers are supported?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Chrome / Edge 88+, Safari 14.1+, Firefox 63+. The effect relies on `clip-path: path()` with multiple sub-paths plus standard `ResizeObserver` and `IntersectionObserver` APIs — all available in evergreen browsers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does lenticular-fx respect prefers-reduced-motion?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. When the user has `prefers-reduced-motion: reduce` set, the lerp is short-circuited to an instant snap, so the content still reveals but without the smooth interpolation."
+            }
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>
