@@ -1,0 +1,17 @@
+demo/
+src/
+*.config.ts
+tsconfig*.json
+.github/
+.claude/
+node_modules/
+dist-demo/
+bun.lock
+package-lock.json
+*.log
+*.tsbuildinfo
+.DS_Store
+.vite
+.cache
+prompt.md
+CLAUDE.md
