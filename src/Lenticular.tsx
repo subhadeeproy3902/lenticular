@@ -67,6 +67,7 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
       ease = 0.12,
       trackWindow = false,
       hitMargin = 24,
+      triggerParent = false,
       scroll = false,
       gyroscope = false,
       paused = false,
@@ -110,6 +111,7 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
     const gyroscopeRef = useRef(gyroscope)
     const slicesRef = useRef(safeSlices)
     const hitMarginRef = useRef(hitMargin)
+    const triggerParentRef = useRef(triggerParent)
     const scrollRef = useRef(scroll)
     const tiltRef = useRef(tilt)
     const perspectiveRef = useRef(perspective)
@@ -141,6 +143,10 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
     useEffect(() => {
       scrollRef.current = scroll
     }, [scroll])
+
+    useEffect(() => {
+      triggerParentRef.current = triggerParent
+    }, [triggerParent])
 
     useEffect(() => {
       onOffsetChangeRef.current = onOffsetChange
@@ -355,6 +361,46 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
         if (t) handlePointerMove(t.clientX)
       }
 
+      // triggerParent: listen on the wrapper's parent element so the
+      // whole surrounding container is the hit area. Cursor X is
+      // normalized to the PARENT's bounds (cursor anywhere in the
+      // parent maps 0 → 1 across the parent's width).
+      const parent = wrapper.parentElement
+      if (triggerParent && parent) {
+        const handleParentMove = (clientX: number) => {
+          const r = parent.getBoundingClientRect()
+          if (r.width <= 0) return
+          const nx = clamp((clientX - r.left) / r.width, 0, 1)
+          targetOffsetRef.current = nx
+          isHoverRef.current = true
+          requestTick()
+        }
+        const onParentMouse = (e: MouseEvent) => handleParentMove(e.clientX)
+        const onParentTouch = (e: TouchEvent) => {
+          const t = e.touches[0]
+          if (t) handleParentMove(t.clientX)
+        }
+        const onParentEnter = () => { isHoverRef.current = true }
+        const onParentLeave = () => handlePointerLeave()
+        const onParentTouchEnd = () => handlePointerLeave()
+
+        parent.addEventListener('mousemove', onParentMouse, { passive: true })
+        parent.addEventListener('mouseenter', onParentEnter, { passive: true })
+        parent.addEventListener('mouseleave', onParentLeave, { passive: true })
+        parent.addEventListener('touchmove', onParentTouch, { passive: true })
+        parent.addEventListener('touchend', onParentTouchEnd, { passive: true })
+        parent.addEventListener('touchcancel', onParentTouchEnd, { passive: true })
+
+        return () => {
+          parent.removeEventListener('mousemove', onParentMouse)
+          parent.removeEventListener('mouseenter', onParentEnter)
+          parent.removeEventListener('mouseleave', onParentLeave)
+          parent.removeEventListener('touchmove', onParentTouch)
+          parent.removeEventListener('touchend', onParentTouchEnd)
+          parent.removeEventListener('touchcancel', onParentTouchEnd)
+        }
+      }
+
       if (trackWindow) {
         window.addEventListener('mousemove', onMove, { passive: true })
         window.addEventListener('touchmove', onTouchMove, { passive: true })
@@ -429,7 +475,7 @@ export const Lenticular = forwardRef<HTMLDivElement, LenticularProps>(
         wrapper.removeEventListener('touchend', onTouchEnd)
         wrapper.removeEventListener('touchcancel', onTouchEnd)
       }
-    }, [trackWindow, gyroscope, scroll, handlePointerMove, handlePointerLeave])
+    }, [trackWindow, gyroscope, scroll, triggerParent, handlePointerMove, handlePointerLeave, requestTick])
 
     useEffect(() => {
       if (!gyroscope || typeof window === 'undefined') return

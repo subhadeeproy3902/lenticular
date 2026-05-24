@@ -4,6 +4,7 @@ import { Faq } from './components/Faq'
 import { HeaderLogo } from './components/HeaderLogo'
 import { GitHubIcon, LinkedInIcon, XIcon } from './components/icons'
 import { PropsTable } from './components/PropsTable'
+import { ThemeToggle } from './components/ThemeToggle'
 import { AlbumCoverExample } from './examples/AlbumCoverExample'
 import { AvatarExample } from './examples/AvatarExample'
 import { ButtonExample } from './examples/ButtonExample'
@@ -75,7 +76,8 @@ export function App() {
       <main id="main-content" className="app">
         <header className="header">
           <nav aria-label="External links" className="top-bar-links">
-            <a className="icon-btn" href="https://github.com/subhadeeproy3902" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <ThemeToggle />
+            <a className="icon-btn" href="https://github.com/subhadeeproy3902/lenticular" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
               <GitHubIcon />
             </a>
             <a className="icon-btn" href="https://x.com/mvp_Subha" target="_blank" rel="noopener noreferrer" aria-label="Twitter / X">

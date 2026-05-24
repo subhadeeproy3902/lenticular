@@ -22,7 +22,7 @@ export function HeroExample({ slices = 14 }: { slices?: number }) {
       <Lenticular
         slices={slices}
         ease={0.16}
-        hitMargin={100}
+        triggerParent
         front={<Stage width={560} height={210}><HeroPhrase variant="a" /></Stage>}
         back={<Stage width={560} height={210}><HeroPhrase variant="b" /></Stage>}
       />

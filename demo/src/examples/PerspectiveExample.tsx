@@ -75,7 +75,7 @@ export function PerspectiveExample({ slices = 18 }: { slices?: number }) {
       ease={0.12}
       tilt={14}
       perspective={900}
-      hitMargin={40}
+      triggerParent
       front={<Stage width={420} height={260}><Skyline variant="a" /></Stage>}
       back={<Stage width={420} height={260}><Skyline variant="b" /></Stage>}
     />

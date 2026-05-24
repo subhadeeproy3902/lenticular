@@ -53,7 +53,14 @@ const rows: Row[] = [
     type: 'number',
     default: '24',
     description:
-      'Extra hit-area in pixels added on every side of the wrapper. Lets you overshoot the visible edge and still hold the back fully revealed. Bump higher (80–120) to make the surrounding card act as the hit target. Set to 0 to disable.',
+      'Extra hit-area in pixels added on every side of the wrapper. Lets you overshoot the visible edge and still hold the back fully revealed. Set to 0 to disable.',
+  },
+  {
+    name: 'triggerParent',
+    type: 'boolean',
+    default: 'false',
+    description:
+      "Listen on the wrapper's parent element instead of the wrapper itself. Cursor X is normalized to the parent's bounds — so moving the cursor anywhere inside the surrounding container drives the offset 0 → 1 across the parent's width. The surrounding card becomes the hit target, no hitMargin needed.",
   },
   {
     name: 'scroll',

@@ -29,7 +29,7 @@ export function CardExample({ slices = 10 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.12}
-      hitMargin={120}
+      triggerParent
       front={<CardFront />}
       back={<CardBack />}
     />

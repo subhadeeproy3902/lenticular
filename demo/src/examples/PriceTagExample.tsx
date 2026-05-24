@@ -20,7 +20,7 @@ export function PriceTagExample({ slices = 10 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.14}
-      hitMargin={80}
+      triggerParent
       front={<Stage width={200} height={150}><PriceTag variant="a" /></Stage>}
       back={<Stage width={200} height={150}><PriceTag variant="b" /></Stage>}
     />

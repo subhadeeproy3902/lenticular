@@ -24,7 +24,7 @@ export function TickerExample({ slices = 20 }: { slices?: number }) {
       <Lenticular
         slices={slices}
         ease={0.2}
-        hitMargin={120}
+        triggerParent
         front={<Stage width={780} height={56}><Ticker variant="a" /></Stage>}
         back={<Stage width={780} height={56}><Ticker variant="b" /></Stage>}
       />

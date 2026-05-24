@@ -112,6 +112,7 @@ const DEFAULTS = {
   defaultSide: 'front' as 'front' | 'back',
   trackWindow: false,
   scroll: false,
+  triggerParent: false,
   showSliceOverlay: false,
 }
 
@@ -129,6 +130,7 @@ export function PlaygroundExample() {
   const [defaultSide, setDefaultSide] = useState<'front' | 'back'>(DEFAULTS.defaultSide)
   const [trackWindow, setTrackWindow] = useState(DEFAULTS.trackWindow)
   const [scrollMode, setScrollMode] = useState(DEFAULTS.scroll)
+  const [triggerParent, setTriggerParent] = useState(DEFAULTS.triggerParent)
   const [showSliceOverlay, setShowSliceOverlay] = useState(DEFAULTS.showSliceOverlay)
 
   const slicesId = useId()
@@ -161,12 +163,13 @@ export function PlaygroundExample() {
     if (paused) lines.push(`  paused`)
     if (defaultSide === 'back') lines.push(`  defaultSide="back"`)
     if (scrollMode) lines.push(`  scroll`)
+    else if (triggerParent) lines.push(`  triggerParent`)
     else if (trackWindow) lines.push(`  trackWindow`)
     lines.push(`  front={<${meta.label.replace(' ', '')}Face variant="a" />}`)
     lines.push(`  back={<${meta.label.replace(' ', '')}Face variant="b" />}`)
     lines.push(`/>`)
     return lines.join('\n')
-  }, [slices, ease, hitMargin, tilt, paused, defaultSide, trackWindow, scrollMode, meta])
+  }, [slices, ease, hitMargin, tilt, paused, defaultSide, trackWindow, scrollMode, triggerParent, meta])
 
   const resetAll = () => {
     setContent(DEFAULTS.content)
@@ -180,6 +183,7 @@ export function PlaygroundExample() {
     setDefaultSide(DEFAULTS.defaultSide)
     setTrackWindow(DEFAULTS.trackWindow)
     setScrollMode(DEFAULTS.scroll)
+    setTriggerParent(DEFAULTS.triggerParent)
     setShowSliceOverlay(DEFAULTS.showSliceOverlay)
   }
 
@@ -201,14 +205,15 @@ export function PlaygroundExample() {
       <div className="pg2-preview" style={{ minHeight: height + 80 }}>
         <div className="pg2-stage-wrap">
           <Lenticular
-            key={`${trackWindow}-${defaultSide}-${content}-${scrollMode}`}
+            key={`${trackWindow}-${defaultSide}-${content}-${scrollMode}-${triggerParent}`}
             slices={slices}
             ease={ease}
             hitMargin={hitMargin}
             tilt={tilt}
             paused={paused}
             defaultSide={defaultSide}
-            trackWindow={!scrollMode && trackWindow}
+            trackWindow={!scrollMode && !triggerParent && trackWindow}
+            triggerParent={!scrollMode && triggerParent}
             scroll={scrollMode}
             onOffsetChange={handleOffset}
             front={<Stage width={width} height={height}>{meta.render('a')}</Stage>}
@@ -322,6 +327,18 @@ export function PlaygroundExample() {
             </button>
             <button className="tab-btn" data-active={scrollMode} onClick={() => setScrollMode(true)}>
               Scroll
+            </button>
+          </div>
+        </div>
+
+        <div className="pg2-group">
+          <span className="control-label">Hit area</span>
+          <div className="control-options">
+            <button className="tab-btn" data-active={!triggerParent} onClick={() => setTriggerParent(false)} disabled={scrollMode}>
+              Wrapper
+            </button>
+            <button className="tab-btn" data-active={triggerParent} onClick={() => setTriggerParent(true)} disabled={scrollMode}>
+              Parent
             </button>
           </div>
         </div>

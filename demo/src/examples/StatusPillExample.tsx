@@ -16,7 +16,7 @@ export function StatusPillExample({ slices = 10 }: { slices?: number }) {
     <Lenticular
       slices={slices}
       ease={0.18}
-      hitMargin={120}
+      triggerParent
       front={<Stage width={170} height={48}><StatusPill variant="a" /></Stage>}
       back={<Stage width={170} height={48}><StatusPill variant="b" /></Stage>}
     />

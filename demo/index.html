@@ -1,9 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#070707" />
+    <meta name="theme-color" content="#070707" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#fbfbfb" media="(prefers-color-scheme: light)" />
+
+    <!-- Theme bootstrap: set data-theme before paint to avoid FOUC. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('lent-theme');
+          var prefersLight = window.matchMedia &&
+            window.matchMedia('(prefers-color-scheme: light)').matches;
+          var t = stored || (prefersLight ? 'light' : 'dark');
+          document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
 
     <!-- ── Primary ─────────────────────────────────────────── -->
     <title>Lenticular fx — React lenticular print effect for the web</title>
@@ -11,7 +25,7 @@
       name="description"
       content="Lenticular fx is a focused React component that recreates the lenticular print effect on any content — slide the cursor and the back face restripes through interleaved vertical columns. Pure CSS clip-path, RAF-driven, optional 3D perspective tilt, zero runtime dependencies, ~10 kB packed."
     />
-    <link rel="canonical" href="https://lenticular-fx.vercel.app/" />
+    <link rel="canonical" href="https://lenticular.mvp-subha.me/" />
     <meta
       name="keywords"
       content="react, lenticular, clip-path, mask, animation, react component, npm package, javascript, typescript, hover effect, parallax, holographic, trading card, 3d tilt, perspective, postcard, reveal, interactive ui, motion design"
@@ -31,8 +45,8 @@
       property="og:description"
       content="Two children, one wrapper, alternating vertical slices on mousemove. Pure CSS clip-path, optional 3D tilt, zero dependencies."
     />
-    <meta property="og:url" content="https://lenticular-fx.vercel.app/" />
-    <meta property="og:image" content="https://lenticular-fx.vercel.app/og.svg" />
+    <meta property="og:url" content="https://lenticular.mvp-subha.me/" />
+    <meta property="og:image" content="https://lenticular.mvp-subha.me/og.svg" />
     <meta property="og:image:type" content="image/svg+xml" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -48,7 +62,7 @@
       name="twitter:description"
       content="Slide the cursor, the content restripes into something else. Pure CSS clip-path + RAF, zero deps, optional 3D tilt."
     />
-    <meta name="twitter:image" content="https://lenticular-fx.vercel.app/og.svg" />
+    <meta name="twitter:image" content="https://lenticular.mvp-subha.me/og.svg" />
     <meta name="twitter:image:alt" content="Lenticular fx — animated lenticular print effect for React" />
 
     <!-- ── Icons / manifest ───────────────────────────────── -->
@@ -72,7 +86,7 @@
         "name": "lenticular-fx",
         "alternateName": "Lenticular fx",
         "description": "A focused React component that recreates the lenticular print effect on any content. Pure CSS clip-path, RAF-driven, optional 3D perspective tilt, zero runtime dependencies.",
-        "url": "https://lenticular-fx.vercel.app/",
+        "url": "https://lenticular.mvp-subha.me/",
         "codeRepository": "https://github.com/subhadeeproy3902/lenticular",
         "programmingLanguage": ["TypeScript", "React"],
         "runtimePlatform": "React 18+",
@@ -91,7 +105,7 @@
           ]
         },
         "keywords": "react, lenticular, clip-path, animation, hover effect, 3d tilt, npm",
-        "image": "https://lenticular-fx.vercel.app/og.svg"
+        "image": "https://lenticular.mvp-subha.me/og.svg"
       }
     </script>
 

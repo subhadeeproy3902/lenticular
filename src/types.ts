@@ -47,6 +47,19 @@ export interface LenticularProps
   hitMargin?: number
 
   /**
+   * When `true`, the cursor listener is attached to the wrapper's
+   * **parent element** rather than the wrapper itself. The cursor
+   * X is still normalized to the wrapper's bounds — so moving the
+   * cursor anywhere inside the surrounding container drives the
+   * offset from 0 (parent's left edge) to 1 (parent's right edge).
+   * Pair this with a styled card around the `<Lenticular>` and the
+   * whole card becomes the hit target. Ignored when `trackWindow`
+   * or `scroll` is on.
+   * @default false
+   */
+  triggerParent?: boolean
+
+  /**
    * Drive the offset from the element's scroll progress through the
    * viewport instead of the cursor. As the wrapper scrolls from the
    * bottom of the viewport up through the top, the offset travels from
