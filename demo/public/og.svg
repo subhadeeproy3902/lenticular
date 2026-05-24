@@ -39,7 +39,7 @@
     </g>
   </g>
   <!-- Title -->
-  <g transform="translate(540, 220)">
+  <g transform="translate(480, 220)">
     <text x="0" y="0"
           font-family="Inter, system-ui, sans-serif"
           font-size="92" font-weight="700"
