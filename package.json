@@ -76,5 +76,15 @@
     "name": "Subhadeep Roy",
     "url": "https://x.com/mvp_Subha"
   },
+  "contributors": [
+    {
+      "name": "Subhadeep Roy",
+      "url": "https://x.com/mvp_Subha"
+    },
+    {
+      "name": "Claude",
+      "url": "https://claude.com"
+    }
+  ],
   "homepage": "https://github.com/subhadeeproy3902/lenticular#readme"
 }

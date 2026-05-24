@@ -106,6 +106,10 @@ The effect relies on `clip-path: path()` with multiple sub-paths and the standar
 
 `@property --lenticular-offset` is registered for compatibility with future styling hooks but is not required — clip paths are computed in JS each frame.
 
+## Credits
+
+Built by [Subhadeep Roy](https://x.com/mvp_Subha) with [Claude](https://claude.com) — pair-programmed end-to-end, from the slice maths and the `clip-path` engine to the demo gallery, the 3D-tilt example, and the SEO/AEO wiring.
+
 ## License
 
 MIT © [Subhadeep Roy](https://x.com/mvp_Subha)
