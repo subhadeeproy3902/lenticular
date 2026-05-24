@@ -1,0 +1,35 @@
+# Netlify config for the lenticular-fx demo.
+# Connect this repo at https://app.netlify.com/start and Netlify will
+# read everything below — no UI fields needed.
+
+[build]
+  # Where Netlify runs the build from. Repo root.
+  base = ""
+  # Install the demo's deps, then build it. Vite writes to ../dist-demo.
+  command = "cd demo && npm install --legacy-peer-deps && npm run build"
+  # The static output Netlify serves.
+  publish = "dist-demo"
+
+[build.environment]
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+# SPA fallback so deep links (none today, but cheap insurance) don't 404.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Long-cache the hashed asset bundles (Vite already fingerprints filenames).
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Short-cache the entry HTML so a redeploy is picked up fast.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "interest-cohort=()"
