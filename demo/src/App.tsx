@@ -18,7 +18,6 @@ import { PortraitExample } from "./examples/PortraitExample";
 import { PriceTagExample } from "./examples/PriceTagExample";
 import { QuoteExample } from "./examples/QuoteExample";
 import { StatusPillExample } from "./examples/StatusPillExample";
-import { SubscribeCtaExample } from "./examples/SubscribeCtaExample";
 import { TickerExample } from "./examples/TickerExample";
 import { TradeCardExample } from "./examples/TradeCardExample";
 
